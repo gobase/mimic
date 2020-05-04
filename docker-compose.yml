@@ -1,0 +1,14 @@
+version: "3"
+services:
+  dapps-mimic:
+    container_name: dapps-mimic
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app/src
+    logging:
+      options:
+        max-size: "500k"
+    ports:
+      - "0.0.0.0:3000:3000"

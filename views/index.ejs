@@ -1,0 +1,48 @@
+<script type="text/javascript">
+
+  async function send() {
+    try {
+      if (!'<%= address %>') {
+        await personalSign();
+      }
+      let toElement = document.getElementById('to');
+      let ethElement = document.getElementById('eth');
+      let resElement = document.getElementById('response');
+      const to = toElement.value;
+      const eth = ethElement.value;
+      sendTransaction(to, eth, function(network, txHash, err) {
+        resElement.style.display = 'block';
+        if (err) {
+          resElement.innerHTML = err;
+          return
+        }
+        toElement.value = '';
+        ethElement.value = '';
+        const url = 'https://' + network + '.etherscan.io/tx/' + txHash;
+        resElement.innerHTML = '<a href=' + url + ' target="_blank">' + url + '</a>';
+      });
+    } catch (err) {
+      alert(err);
+    }
+  }
+
+</script>
+
+<% if (address) { %>
+
+  <div class="uk-margin">
+    <div class="uk-alert" id="response" style="display: none;">
+  </div>
+
+  <h4># SendTransaction</h4>
+  <div class="uk-margin">
+    <input type="text" class="uk-input" id="to" placeholder="To address (0x...)" value="">
+  </div>
+  <div class="uk-margin">
+    <input type="text" class="uk-input" id="eth" placeholder="ETH" value="">
+  </div>
+  <div class="uk-margin">
+    <button class="uk-button uk-button-primary" onclick="send();">Send</button>
+  </div>
+
+<% } %>

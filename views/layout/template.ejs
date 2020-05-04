@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DApps mimic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css" />
+    <!-- UIkit JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- web3 -->
+    <script type="text/javascript" src='/js/web3.min.js'></script>
+    <script type="text/javascript" src='/js/main.js'></script>
+  </head>
+  <body>
+    <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+      <div class="header">
+        <% include header.ejs %>
+      </div>
+      <div class="body">
+        <%- body %>
+      </div>
+      <div class="footer">
+        <% include footer.ejs %>
+      </div>
+    </div>
+  </body>
+</html>

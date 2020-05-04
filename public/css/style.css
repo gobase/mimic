@@ -1,0 +1,16 @@
+body {
+  background-color: white;
+}
+
+.button {
+  width: 100px;
+}
+
+.address {
+  font-size: 12px;
+}
+
+.uk-table td {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
