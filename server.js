@@ -34,7 +34,6 @@ router.get('/', async (ctx) => {
 
 router.post('/sign', async(ctx) => {
   const address = ctx.request.body.address.toLowerCase();
-  console.log(address);
   let message = ctx.request.body.message;
   let sig = ctx.request.body.sig;
 
@@ -49,7 +48,6 @@ router.post('/sign', async(ctx) => {
   const pubKey  = ethutil.ecrecover(msg, v, r, s);
   const addrBuf = ethutil.pubToAddress(pubKey);
   const addr = ethutil.bufferToHex(addrBuf);
-  console.log(addr);
   if (addr != address) {
     throw new Error('The addresses don\'t match.');
   }
