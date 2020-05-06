@@ -2,7 +2,7 @@ const path = require('path');
 const Koa = require('koa');
 const logger = require('koa-logger')
 const Router = require('koa-router');
-const render = require('koa-ejs');
+const views = require('koa-views');
 const static = require('koa-static');
 const session = require('koa-session');
 const bodyParser = require('koa-bodyparser');
@@ -16,13 +16,11 @@ app.use(session(app));
 app.use(logger())
 app.use(bodyParser());
 
-render(app, {
-  root: path.join(__dirname, 'views'),
-  layout: 'layout',
-  viewExt: 'ejs',
-  cache: false,
-  debug: false
-});
+app.use(views(__dirname + '/views', {
+  map: {
+    html: 'underscore'
+  }
+}));
 
 app.use(static(__dirname + '/public'));
 
