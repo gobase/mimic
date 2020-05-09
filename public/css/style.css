@@ -18,6 +18,8 @@ body {
 }
 .contents {
   margin-top: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .message {
   margin-top: 50px;
