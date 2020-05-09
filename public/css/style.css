@@ -1,16 +1,27 @@
 body {
-  background-color: white;
+  max-width: 700px;
+  margin: auto;
 }
-
-.button {
-  width: 100px;
+.page-title {
+  font-size: 1rem;
+  font-weight: 900;
 }
-
-.address {
+.navbar>.container {
+  padding-top: 50px;
+}
+.navbar-dropdown {
+  border-top: 1px solid #eee;
+}
+.navbar-link, .navbar-link:hover {
+  font-size: small;
+  color: black;
+}
+.contents {
+  margin-top: 50px;
+}
+.message {
+  margin-top: 50px;
+}
+#response {
   font-size: 12px;
-}
-
-.uk-table td {
-  padding-top: 8px;
-  padding-bottom: 8px;
 }

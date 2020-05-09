@@ -4,74 +4,105 @@
     <title>DApps mimic</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css" />
-    <!-- UIkit JS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.8.0/css/bulma.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <!-- web3 -->
     <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
     <script type="text/javascript" src='/js/main.js'></script>
   </head>
   <body>
-    <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
-      <div class="header">
-        <h2>DApps mimic</h2>
-        <div>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item page-title" href="/">DApps mimic</a>
+          <span class="navbar-burger burger" data-target="navbarMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <% if (address) { %>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link"><%= address %></a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item" onclick="disconnect();">Disconnect</a>
+                </div>
+              </div>
+            <% } else { %>
+              <button class="button is-success" onclick="connect();">Unlock your wallet</button>
+            <% } %>
+            </div>
+        </div>
+      </div>
+    </nav>
+    <section class="hero is-fullheight">
+      <div class="contents">
+        <div class="container">
           <% if (address) { %>
-            <a class="uk-button uk-button-primary" onclick="disconnect();">Disconnect</a>
-            <div class="uk-alert address"><%= address %></div>
+            <div class="field">
+              <label class="label">Address</label>
+              <div class="control">
+                <input class="input" type="text" id="to" placeholder="To address (0x...)">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">ETH</label>
+              <div class="control">
+                <input class="input" type="text" id="eth" placeholder="ETH">
+              </div>
+            </div>
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-fullwidth is-success" onclick="send();">Send</button>
+              </div>
+            </div>
+            <article class="message is-success" id="result" style="display: none;">
+              <div class="message-header">
+                <p>Result</p>
+              </div>
+              <div class="message-body" id="response">
+              </div>
+            </article>
           <% } else { %>
-            <a class="uk-button uk-button-primary" onclick="connect();">Connect</a>
+            <article class="message is-success">
+              <div class="message-header">
+                <p>Info</p>
+              </div>
+              <div class="message-body">
+                This is a example of DApps in Gobase.<br>
+                See <a href="https://gobase.io">https://gobase.io</a> for more information.
+              </div>
+            </article>
           <% } %>
-        </div>
       </div>
-      <div class="body">
-        <% if (address) { %>
-        <div class="uk-margin">
-          <div class="uk-alert" id="response" style="display: none;">
-        </div>
-
-        <h4># SendTransaction</h4>
-        <div class="uk-margin">
-          <input type="text" class="uk-input" id="to" placeholder="To address (0x...)" value="">
-        </div>
-        <div class="uk-margin">
-          <input type="text" class="uk-input" id="eth" placeholder="ETH" value="">
-        </div>
-        <div class="uk-margin">
-          <button class="uk-button uk-button-primary" onclick="send();">Send</button>
-        </div>
-        <% } %>
-        <script type="text/javascript">
-          async function send() {
-            try {
-              if (!'<%= address %>') {
-                await personalSign();
-              }
-              let toElement = document.getElementById('to');
-              let ethElement = document.getElementById('eth');
-              let resElement = document.getElementById('response');
-              const to = toElement.value;
-              const eth = ethElement.value;
-              sendTransaction(to, eth, function(network, txHash, err) {
-                resElement.style.display = 'block';
-                if (err) {
-                  resElement.innerHTML = err;
-                  return
-                }
-                toElement.value = '';
-                ethElement.value = '';
-                const url = 'https://' + network + '.etherscan.io/tx/' + txHash;
-                resElement.innerHTML = '<a href=' + url + ' target="_blank">' + url + '</a>';
-              });
-            } catch (err) {
-              alert(err);
-            }
+    </section>
+    <script type="text/javascript">
+      async function send() {
+        try {
+          if (!'<%= address %>') {
+            await personalSign();
           }
-        </script>
-      </div>
-    </div>
+          let toElement = document.getElementById('to');
+          let ethElement = document.getElementById('eth');
+          let resElement = document.getElementById('response');
+          const to = toElement.value;
+          const eth = ethElement.value;
+          sendTransaction(to, eth, function(network, txHash, err) {
+            document.getElementById('result').style.display = 'block';
+            if (err) {
+              resElement.innerHTML = err;
+              return
+            }
+            toElement.value = '';
+            ethElement.value = '';
+            const url = 'https://' + network + '.etherscan.io/tx/' + txHash;
+            resElement.innerHTML = '<a href=' + url + ' target="_blank">' + url + '</a>';
+          });
+        } catch (err) {
+          alert(err);
+        }
+      }
+    </script>
   </body>
 </html>
