@@ -8,6 +8,7 @@ body {
 }
 .navbar-menu {
   margin-left: 10px;
+  margin-right: 0rem !important;
 }
 .navbar>.container {
   padding-top: 50px;
