@@ -6,6 +6,9 @@ body {
   font-size: 1rem;
   font-weight: 900;
 }
+.navbarMenu {
+  margin-left: 10px;
+}
 .navbar>.container {
   padding-top: 50px;
 }
