@@ -1,7 +1,7 @@
 version: "3"
 services:
-  dapps-mimic:
-    container_name: dapps-mimic
+  mimic:
+    container_name: mimic
     build:
       context: .
       dockerfile: Dockerfile

@@ -1,1 +1,1 @@
-# dapps-mimic
+# mimic

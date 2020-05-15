@@ -1,5 +1,5 @@
 {
-  "name": "dapps-mimic",
+  "name": "mimic",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gobase/dapps-mimic.git"
+    "url": "git+https://github.com/gobase/mimic.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gobase/dapps-mimic/issues"
+    "url": "https://github.com/gobase/mimic/issues"
   },
-  "homepage": "https://github.com/gobase/dapps-mimic#readme",
+  "homepage": "https://github.com/gobase/mimic#readme",
   "dependencies": {
     "ejs": "^3.1.2",
     "ethereumjs-util": "^6.2.0",
