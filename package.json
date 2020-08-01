@@ -26,6 +26,7 @@
     "koa-session": "^6.0.0",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.1",
-    "web3": "^1.2.7"
+    "web3": "^1.2.7",
+    "elliptic": "^6.5.3"
   }
 }
