@@ -54,7 +54,8 @@ async function sendTransaction(to, eth, callback) {
     web3.eth.sendTransaction({
       from: account,
       to: to,
-      value: web3.utils.toWei(eth, 'ether')
+      value: web3.utils.toWei(eth, 'ether'),
+      gas: 29*10**9
     }, function (err, txHash) {
       callback(network, txHash, err);
     })
